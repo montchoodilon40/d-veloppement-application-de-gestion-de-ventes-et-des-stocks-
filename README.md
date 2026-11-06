@@ -65,7 +65,7 @@ Application web complète de gestion commerciale : catalogue produits, catégori
 
 ### 3.1 Base de données
 
-Démarrer MySQL puis créer la base :
+Démarrer MySQL puis créer la base locale :
 
 ```sql
 CREATE DATABASE commerciale_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -89,7 +89,15 @@ php artisan migrate --seed
 php artisan serve
 ```
 
-L'API est disponible sur **http://127.0.0.1:8000**.
+`php artisan migrate --seed` crée les tables et charge les données de démonstration directement dans MySQL local. Le fichier `commerciale_db.sql` fourni à la racine peut aussi être importé à la place du seeder, dans la base vide. Depuis l'invite de commandes Windows, à la racine du projet :
+
+```cmd
+C:\xampp\mysql\bin\mysql.exe -u root commerciale_db < commerciale_db.sql
+```
+
+Avec un autre emplacement de MySQL, adaptez le chemin de `mysql.exe`. Après l'import du dump, ne lancez pas `migrate --seed` : le dump contient déjà le schéma et les données.
+
+L'API Laravel est disponible localement sur **http://127.0.0.1:8000**. Elle n'est pas une API distante : elle relie l'interface React à la base MySQL locale.
 
 Le fichier `.env.example` est déjà configuré pour MySQL local :
 
@@ -116,7 +124,7 @@ npm run dev
 
 L'application est disponible sur **http://127.0.0.1:5173**.
 
-Le serveur Vite redirige `/api` vers `http://127.0.0.1:8000`. Pour appeler directement une autre API, créer un fichier `frontend/.env` :
+Le serveur Vite redirige automatiquement les requêtes `/api` vers Laravel sur `http://127.0.0.1:8000`. Aucun fichier `.env` frontend n'est nécessaire pour l'utilisation locale. Une URL personnalisée ne sert que si le backend est volontairement hébergé ailleurs :
 
 ```env
 VITE_API_URL=http://127.0.0.1:8000/api

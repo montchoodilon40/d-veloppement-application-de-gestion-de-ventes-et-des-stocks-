@@ -1,0 +1,507 @@
+/* ---------- KPI cards ---------- */
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+  margin-bottom: 18px;
+}
+
+.stat-card {
+  position: relative;
+  overflow: hidden;
+  padding: 17px 18px 15px;
+  animation: view-enter 0.38s cubic-bezier(0.2, 0.75, 0.25, 1) both;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.02), 0 10px 26px -22px rgba(15, 23, 42, 0.18);
+}
+
+.stat-card:nth-child(2) {
+  animation-delay: 45ms;
+}
+
+.stat-card:nth-child(3) {
+  animation-delay: 90ms;
+}
+
+.stat-card:nth-child(4) {
+  animation-delay: 135ms;
+}
+
+.stat-card:hover {
+  box-shadow: 0 8px 22px -18px rgba(15, 23, 42, 0.32);
+}
+
+.stat-card::after {
+  position: absolute;
+  top: -38px;
+  right: -38px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.06), transparent 68%);
+  content: '';
+  pointer-events: none;
+}
+
+.stat-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.stat-icon {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border-radius: 12px;
+}
+
+.stat-primary .stat-icon {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.stat-success .stat-icon {
+  background: #ecfdf5;
+  color: var(--success);
+}
+
+.stat-warning .stat-icon {
+  background: #fffbeb;
+  color: var(--warning);
+}
+
+.stat-violet .stat-icon {
+  background: #f5f3ff;
+  color: #7c3aed;
+}
+
+.stat-trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px 7px;
+  border-radius: 999px;
+  font-size: 10.8px;
+  font-weight: 600;
+}
+
+.stat-trend.positive {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.stat-trend.negative {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.stat-label {
+  margin-bottom: 5px;
+  color: var(--muted);
+  font-size: 12.2px;
+}
+
+.stat-value {
+  color: var(--ink);
+  font-size: 27px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 750;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+}
+
+.stat-meta {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 11.6px;
+}
+
+.stat-footnote {
+  display: block;
+  margin-top: 10px;
+  padding-top: 9px;
+  border-top: 1px dashed #eef2f7;
+  color: var(--soft);
+  font-size: 10.8px;
+}
+
+.stat-link {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: 10px;
+  padding-top: 9px;
+  border-top: 1px dashed #eef2f7;
+  color: var(--primary);
+  font-size: 10.9px;
+  font-weight: 600;
+}
+
+.stat-link:hover {
+  color: var(--primary-dark);
+}
+
+/* ---------- Dashboard layout ---------- */
+
+.dashboard-grid {
+  display: grid;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.dashboard-grid-main {
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+}
+
+.dashboard-grid-secondary {
+  grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+}
+
+.chart-card,
+.donut-card,
+.lowstock-card,
+.top-products-card {
+  padding: 19px 20px 17px;
+}
+
+.chart-total {
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.chart-total span {
+  color: var(--soft);
+  font-size: 10.8px;
+}
+
+.chart-total strong {
+  display: block;
+  margin-top: 2px;
+  font-size: 17px;
+  letter-spacing: -0.025em;
+}
+
+.chart-container {
+  width: 100%;
+  height: 258px;
+  margin-top: 4px;
+}
+
+.chart-container-bar {
+  height: 246px;
+}
+
+.chart-tooltip {
+  padding: 8px 11px;
+  border-radius: 9px;
+  background: #0f172a;
+  box-shadow: 0 10px 24px -8px rgba(15, 23, 42, 0.4);
+  color: #e2e8f0;
+  font-size: 11px;
+}
+
+.chart-tooltip span {
+  display: block;
+  margin-bottom: 2px;
+  color: #a5b4fc;
+  font-size: 10px;
+}
+
+.chart-tooltip strong {
+  display: block;
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: -0.01em;
+}
+
+.chart-tooltip small {
+  display: block;
+  margin-top: 1px;
+  color: #94a3b8;
+  font-size: 9.8px;
+}
+
+/* ---------- Donut ---------- */
+
+.donut-wrap {
+  position: relative;
+  width: 100%;
+  height: 210px;
+}
+
+.donut-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+.donut-center span {
+  color: var(--soft);
+  font-size: 10.2px;
+}
+
+.donut-center strong {
+  margin-top: 1px;
+  font-size: 16.5px;
+  letter-spacing: -0.025em;
+}
+
+.donut-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-top: 4px;
+}
+
+.donut-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.3px;
+}
+
+.legend-dot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.legend-label {
+  overflow: hidden;
+  flex: 1;
+  color: #475569;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.legend-value {
+  color: var(--soft);
+  font-size: 10.6px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Low stock ---------- */
+
+.lowstock-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.lowstock-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid #f4f7fa;
+}
+
+.lowstock-row:hover .lowstock-info strong {
+  color: var(--primary);
+}
+
+.lowstock-thumb {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 9px;
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.lowstock-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.lowstock-info strong {
+  display: block;
+  overflow: hidden;
+  color: #1e293b;
+  font-size: 12.1px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 0.15s ease;
+}
+
+.lowstock-info span {
+  display: block;
+  margin-top: 1px;
+  color: var(--soft);
+  font-size: 10.1px;
+}
+
+.lowstock-footer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 9px 10px;
+  border-radius: 9px;
+  background: #fffbeb;
+  color: #b45309;
+  font-size: 10.5px;
+}
+
+.lowstock-footer span {
+  flex: 1;
+}
+
+.lowstock-footer a {
+  color: #92400e;
+  font-weight: 600;
+}
+
+.lowstock-footer a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Top products ---------- */
+
+.top-products-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.top-product-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f4f7fa;
+}
+
+.top-product-row:last-child {
+  border-bottom: 0;
+}
+
+.rank {
+  color: #cbd5e1;
+  font-size: 10.5px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.rank-1 {
+  color: #f59e0b;
+}
+
+.rank-2 {
+  color: #94a3b8;
+}
+
+.rank-3 {
+  color: #c58a5e;
+}
+
+.top-product-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.top-product-info strong {
+  display: block;
+  overflow: hidden;
+  color: #1e293b;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.top-product-info span {
+  display: block;
+  margin-top: 1px;
+  color: var(--soft);
+  font-size: 9.9px;
+}
+
+.top-product-revenue {
+  color: #334155;
+  font-size: 11.8px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.top-products-summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding-top: 11px;
+  border-top: 1px dashed #eef2f7;
+  color: var(--soft);
+  font-size: 10.4px;
+}
+
+/* ---------- Dashboard responsive adjustments ---------- */
+
+@media (max-width: 1260px) {
+  .stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1080px) {
+  .dashboard-grid-main,
+  .dashboard-grid-secondary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .chart-container {
+    height: 250px;
+  }
+
+  .donut-card {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    align-items: center;
+    column-gap: 20px;
+  }
+
+  .donut-card .card-header {
+    grid-column: 1 / -1;
+  }
+
+  .donut-legend {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .stat-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .stat-value {
+    font-size: 24px;
+  }
+
+  .donut-card {
+    display: block;
+  }
+
+  .donut-legend {
+    margin-top: 4px;
+  }
+
+  .chart-total {
+    display: none;
+  }
+
+  .chart-container {
+    height: 225px;
+  }
+}
